@@ -23,4 +23,6 @@ app.get('/login', (req, res) => {
 
 
 
-module.exports = app.listen(PORT);
+module.exports = app.listen(PORT, () => {
+    console.log(`Server running on port http://localhost:${PORT}`);
+});
