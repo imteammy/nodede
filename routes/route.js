@@ -8,10 +8,10 @@ const route = express.Router();
 
 
 module.exports = (app) => {
-    app.get('/hero', (req, res) => {
+    app.get('/hero', async (req, res) => {
 
         // Connect MongoDB at default port 27017.
-        mongoose.connect('mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net/', {
+     await  mongoose.connect('mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net/', {
             //useNewUrlParser: true,
             //useCreateIndex: true,
         }).then((success) => {
