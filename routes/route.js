@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const route = express.Router();
 
 // Connect MongoDB at default port 27017.
-mongoose.connect('mongodb://localhost:27017/', {
+mongoose.connect('mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net/', {
     //useNewUrlParser: true,
     //useCreateIndex: true,
 }).then(() => {
