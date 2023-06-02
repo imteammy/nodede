@@ -14,6 +14,8 @@ app.use(bodyPaser.urlencoded({ extended : true }));
 app.use(bodyPaser.json())
 
 
-app.listen(PORT,() => {
-    console.log(`Server is runnig on http://localhost:${PORT}`);
-});
+// app.listen(PORT,() => {
+//     console.log(`Server is runnig on http://localhost:${PORT}`);
+// });
+
+module.exports = app;
