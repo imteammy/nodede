@@ -1,22 +1,29 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net/";
+
 const route = express.Router();
 
 
 module.exports = (app) => {
     app.get('/hero', async (req, res) => {
-      try {
-        // Connect to MongoDB
-        await mongoose.connect('mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net/', {
-          useNewUrlParser: true,
-          useCreateIndex: true,
-        });
-  
-        console.log('MongoDB connected');
-        res.send('MongoDB connected');
-      } catch (err) {
-        console.error('Cannot connect to MongoDB:', err.message);
-        res.status(500).send('Cannot connect to MongoDB');
-      }
+        const client = new MongoClient(uri, {
+            serverApi: {
+              version: ServerApiVersion.v1,
+              strict: true,
+              deprecationErrors: true,
+            }
+          });
+          await client.connect();
+          try {
+            // Connect the client to the server	(optional starting in v4.7)
+            await client.connect();
+            // Send a ping to confirm a successful connection
+            await client.db("admin").command({ ping: 1 });
+            res.send("Pinged your deployment. You successfully connected to MongoDB!");
+          } finally {
+            // Ensures that the client will close when you finish/error
+            await client.close();
+          }
     });
   };
