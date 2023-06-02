@@ -6,11 +6,13 @@ const route = express.Router();
 mongoose.connect('mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net/', {
     //useNewUrlParser: true,
     //useCreateIndex: true,
-}).then(() => {
+}).then((success) => {
     console.log("MongoDb connecting");
-}).catch(() => {
+}).catch((err) => {
     console.log("Cannot connect to MongoDB");
-})
+});
+
+
 
 
 module.exports = (app) => {
