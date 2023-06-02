@@ -14,10 +14,9 @@ mongoose.connect('mongodb://localhost:27017/', {
 
 
 module.exports = (app) => {
-    app.get('/', (req, res) => {
+    app.get('/hero', (req, res) => {
         res.send("Hello world");
     });
 
-    
 
 }

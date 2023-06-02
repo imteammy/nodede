@@ -13,6 +13,9 @@ route(app);
 app.use(bodyPaser.urlencoded({ extended : true }));
 app.use(bodyPaser.json())
 
+app.get('/', (req, res) => {
+    res.send('Hello Word!');
+})
 
 // app.listen(PORT,() => {
 //     console.log(`Server is runnig on http://localhost:${PORT}`);
