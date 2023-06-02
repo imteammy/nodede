@@ -12,8 +12,8 @@ module.exports = (app) => {
 
         // Connect MongoDB at default port 27017.
      await  mongoose.connect('mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net/', {
-            //useNewUrlParser: true,
-            //useCreateIndex: true,
+            useNewUrlParser: true,
+            useCreateIndex: true,
         }).then((success) => {
         const dbok = console.log("MongoDB connecting");
         res.send(dbok);
