@@ -12,8 +12,9 @@ const databaseName = "ROV";
 mongoose.connect(`${uri}/${databaseName}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    connectTimeoutMS: 15000
-}).then(() => {
+    connectTimeoutMS: 30000
+  })
+  .then(() => {
     console.log('Connected to MongoDB');
 }).catch(err => {
     console.log(err.message);
