@@ -17,7 +17,7 @@ module.exports = (app) => {
 
       await db;
     
-      const data =   await Hero.findOne();
+      const data =   await Hero.find();
       return res.send(data);
     }
     
