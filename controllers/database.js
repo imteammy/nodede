@@ -1,15 +1,21 @@
+
 const mongoose = require('mongoose');
 require('dotenv').config();
-const uri = process.env.mongodb_uri;
 
 
-// Connect MongoDB at default port 27017.
-mongoose.connect('mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net/', {
+
+const uri = 'mongodb+srv://peerawat:YDCOyOKDb1LEyUV8@nodedev.fgnykzv.mongodb.net';
+const databaseName = "ROV";
+
+
+
+mongoose.connect(`${uri}/${databaseName}`, {
     useNewUrlParser: true,
-//    useCreateIndex: true,
-    connectTimeoutMS: 1500
-}).then(connection => {
+    useUnifiedTopology: true,
+    connectTimeoutMS: 15000
+}).then(() => {
     console.log('Connected to MongoDB');
 }).catch(err => {
     console.log(err.message);
-})
+});
+
