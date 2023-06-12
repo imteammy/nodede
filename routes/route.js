@@ -27,11 +27,11 @@ module.exports = (app) => {
   app.delete('/items/delete', itemsController.deleteItem);
 
   //? Challengers Skills
-  app.get('/challengersSkill', challengersSkillController.getAllSkills);
-  app.get('/challengersSkill/name', challengersSkillController.getSkillByName);
-  app.post('/challengersSkill/add', challengersSkillController.addSkill);
-  app.post('/challengersSkill/update', challengersSkillController.updateSkill);
-  app.delete('/challengersSkill/delete', challengersSkillController.deleteSkill);
+  app.get('/challengersskill', challengersSkillController.getAllSkills);
+  app.get('/challengersskill/name', challengersSkillController.getSkillByName);
+  app.post('/challengersskill/add', challengersSkillController.addSkill);
+  app.post('/challengersskill/update', challengersSkillController.updateSkill);
+  app.delete('/challengersskill/delete', challengersSkillController.deleteSkill);
 
   //? Roons
   app.get('/roon', roonController.getAllRoons);
@@ -41,10 +41,10 @@ module.exports = (app) => {
   app.delete('/roon/delete', roonController.deleteRoon);
 
   //? LatensSkills
-  app.get('/latensSkill', latensSkillController.getAllLatensSkills);
-  app.get('/latensSkill/name', latensSkillController.getLatensSkillByName);
-  app.post('/latensSkill/add', latensSkillController.addLatensSkill);
-  app.post('/latensSkill/update', latensSkillController.updateLatensSkill);
-  app.delete('/latensSkill/delete', latensSkillController.deleteLatensSkill);
+  app.get('/latensskill', latensSkillController.getAllLatensSkills);
+  app.get('/latensskill/name', latensSkillController.getLatensSkillByName);
+  app.post('/latensskill/add', latensSkillController.addLatensSkill);
+  app.post('/latensskill/update', latensSkillController.updateLatensSkill);
+  app.delete('/latensskill/delete', latensSkillController.deleteLatensSkill);
 
 };
