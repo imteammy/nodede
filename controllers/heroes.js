@@ -5,8 +5,13 @@ const { Hero } = require("../models/rov_models");
 
 exports.getAllHeroes = async (req, res) => {
   try {
-    const data = await Hero.find();
-    return res.send(data);
+    const hero = await Hero.find();
+
+    if (hero.length === 0 ){
+      return res.json({message : "Heroes is empty."})
+    }
+
+    return res.send(hero);
   } catch (error) {
     return res.send(error.message);
   }
@@ -15,8 +20,8 @@ exports.getAllHeroes = async (req, res) => {
 exports.getHeroByName = async (req, res) => {
   const name = req.body.name;
   try {
-    const data = await Hero.find({ name });
-    return res.send(data);
+    const hero = await Hero.find({ name });
+    return res.send(hero);
   } catch (error) {
     return res.send(error.message);
   }
@@ -27,9 +32,9 @@ exports.addHero = async (req, res) => {
 
   try {
     const result = await Hero.create(HeroData);
-    res.json({ message: "Created new hero successfully.", data: result });
+    return res.json({ message: "Created new hero successfully.", data: result });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -47,9 +52,9 @@ exports.updateHeroByName = async (req, res) => {
       return res.status(404).json({ message: "Hero not found." });
     }
 
-    res.json({ message: "Hero updated successfully.", data: updatedHero });
+    return res.json({ message: "Hero updated successfully.", data: updatedHero });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -61,12 +66,13 @@ exports.deleteHeroByName = async (req, res) => {
       return res.status(404).json({ message: "Hero not found." });
     }
     
-    res.json({ message: "Hero deleted successfully.", data: deleteHero });
+    return res.json({ message: "Hero deleted successfully.", data: deleteHero });
 
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
+
 exports.deleteHeroById = async (req, res) => {
   const { id } = req.body;
   try {
@@ -75,9 +81,9 @@ exports.deleteHeroById = async (req, res) => {
       return res.status(404).json({ message: "Hero not found." });
     }
     
-    res.json({ message: "Hero deleted successfully.", data: deleteHero });
+    return res.json({ message: "Hero deleted successfully.", data: deleteHero });
 
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };

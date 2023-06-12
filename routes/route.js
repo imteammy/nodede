@@ -16,11 +16,11 @@ module.exports = (app) => {
 
 
   //? Items
-  app.get('/item', itemsController.getAllItems);
-  app.get('/item/name', itemsController.getItemByName);
-  app.post('/item/add', itemsController.addItem);
-  app.post('/item/update', itemsController.updateItem);
-  app.delete('/item/delete', itemsController.deleteItem);
+  app.get('/items', itemsController.getAllItems);
+  app.get('/items/name', itemsController.getItemByName);
+  app.post('/items/add', itemsController.addItem);
+  app.post('/items/update', itemsController.updateItem);
+  app.delete('/items/delete', itemsController.deleteItem);
 
   //? Challengers Skills
   app.get('/skill', skillController.getAllSkills);
