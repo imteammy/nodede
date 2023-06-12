@@ -6,7 +6,7 @@ const roonController = require('../controllers/roons');
 const latensSkillController = require('../controllers/latensSkills');
 
 auth = async (req, res, next) => {
-  console.log(req.headers);
+  
   const { token } = req.body;
 
   if (!token || token === "" || token === undefined) {
@@ -28,37 +28,37 @@ module.exports = (app) => {
   });
 
   //? Heroes
-  app.get('/hero', auth, heroController.getAllHeroes);
-  app.get('/hero/name', auth, heroController.getHeroByName);
+  app.get('/hero/', heroController.getAllHeroes);
+  app.get('/hero/name', heroController.getHeroByName);
   app.post('/hero/add', auth, heroController.addHero);
   app.post('/hero/update', auth, heroController.updateHeroByName);
   app.delete('/hero/delete', auth, heroController.deleteHeroByName);
   app.delete('/hero/delete/id', auth, heroController.deleteHeroById);
 
   //? Items
-  app.get('/items', auth, itemsController.getAllItems);
-  app.get('/items/name', auth, itemsController.getItemByName);
+  app.get('/items', itemsController.getAllItems);
+  app.get('/items/name', itemsController.getItemByName);
   app.post('/items/add', auth, itemsController.addItem);
   app.post('/items/update', auth, itemsController.updateItem);
   app.delete('/items/delete', auth, itemsController.deleteItem);
 
   //? Challengers Skills
-  app.get('/challengersskill', auth, challengersSkillController.getAllSkills);
-  app.get('/challengersskill/name', auth, challengersSkillController.getSkillByName);
+  app.get('/challengersskill', challengersSkillController.getAllSkills);
+  app.get('/challengersskill/name', challengersSkillController.getSkillByName);
   app.post('/challengersskill/add', auth, challengersSkillController.addSkill);
   app.post('/challengersskill/update', auth, challengersSkillController.updateSkill);
   app.delete('/challengersskill/delete', auth, challengersSkillController.deleteSkill);
 
   //? Roons
-  app.get('/roon', auth, roonController.getAllRoons);
-  app.get('/roon/name', auth, roonController.getRoonByName);
+  app.get('/roon', roonController.getAllRoons);
+  app.get('/roon/name', roonController.getRoonByName);
   app.post('/roon/add', auth, roonController.addRoon);
   app.post('/roon/update', auth, roonController.updateRoonByName);
   app.delete('/roon/delete', auth, roonController.deleteRoon);
 
   //? LatensSkills
-  app.get('/latensskill', auth, latensSkillController.getAllLatensSkills);
-  app.get('/latensskill/name', auth, auth, latensSkillController.getLatensSkillByName);
+  app.get('/latensskill', latensSkillController.getAllLatensSkills);
+  app.get('/latensskill/name', auth, latensSkillController.getLatensSkillByName);
   app.post('/latensskill/add', auth, latensSkillController.addLatensSkill);
   app.post('/latensskill/update', auth, latensSkillController.updateLatensSkill);
   app.delete('/latensskill/delete', auth, latensSkillController.deleteLatensSkill);
