@@ -16,8 +16,8 @@ app.get("/", (req, res) => {
     res.send("<center><h1>ROV API</h1></center>");
   });
 
-module.exports = app.listen(PORT, () => {
-    console.log(`Server running on port http://localhost:${PORT}`);
-});
+// module.exports = app.listen(PORT, () => {
+//     console.log(`Server running on port http://localhost:${PORT}`);
+// });
 
-//module.exports = app;
+module.exports = app;
