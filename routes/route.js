@@ -1,10 +1,15 @@
 const express = require("express");
 const heroController = require('../controllers/heroes');
 const itemsController = require('../controllers/items');
-const skillController = require('../controllers/challengerSkills');
+const challengersSkillController = require('../controllers/challengerSkills');
 const roonController = require('../controllers/roons');
 const latensSkillController = require('../controllers/latensSkills');
 module.exports = (app) => {
+
+  //? Home page
+  app.get("/", (req, res) => {
+    res.send("<center><h1>ROV API</h1></center>");
+  });
 
   //? Heroes
   app.get('/hero', heroController.getAllHeroes);
@@ -14,7 +19,6 @@ module.exports = (app) => {
   app.delete('/hero/delete', heroController.deleteHeroByName);
   app.delete('/hero/delete/id', heroController.deleteHeroById);
 
-
   //? Items
   app.get('/items', itemsController.getAllItems);
   app.get('/items/name', itemsController.getItemByName);
@@ -23,11 +27,11 @@ module.exports = (app) => {
   app.delete('/items/delete', itemsController.deleteItem);
 
   //? Challengers Skills
-  app.get('/skill', skillController.getAllSkills);
-  app.get('/skill/name', skillController.getSkillByName);
-  app.post('/skill/add', skillController.addSkill);
-  app.post('/skill/update', skillController.updateSkill);
-  app.delete('/skill/delete', skillController.deleteSkill);
+  app.get('/challengersSkill', challengersSkillController.getAllSkills);
+  app.get('/challengersSkill/name', challengersSkillController.getSkillByName);
+  app.post('/challengersSkill/add', challengersSkillController.addSkill);
+  app.post('/challengersSkill/update', challengersSkillController.updateSkill);
+  app.delete('/challengersSkill/delete', challengersSkillController.deleteSkill);
 
   //? Roons
   app.get('/roon', roonController.getAllRoons);
