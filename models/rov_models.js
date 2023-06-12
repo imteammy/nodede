@@ -55,7 +55,7 @@ const roonSchema = new mongoose.Schema({
     },
 });
 
-const latenSkillSchema = new mongoose.Schema({
+const latensSkillsSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -74,7 +74,7 @@ const latenSkillSchema = new mongoose.Schema({
     },
 });
 
-const challengerSkillSchema = new mongoose.Schema({
+const ChallengerSkillsSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -103,15 +103,15 @@ const itemSchema = new mongoose.Schema({
 });
 
 const Roons = mongoose.model("Roons", roonSchema);
-const LatenSkill = mongoose.model("LatenSkills", latenSkillSchema);
-const ChalengerSkill = mongoose.model("ChalengerSkills", challengerSkillSchema);
+const LatensSkills = mongoose.model("LatensSkills", latensSkillsSchema);
+const ChallengerSkills = mongoose.model("ChallengerSkills", ChallengerSkillsSchema);
 const Items = mongoose.model("Items", itemSchema);
 const Hero = mongoose.model("Hero", heroSchema);
 
 module.exports = {
     Hero,
     Roons,
-    LatenSkill,
-    ChalengerSkill,
+    LatensSkills,
+    ChallengerSkills,
     Items,
 };

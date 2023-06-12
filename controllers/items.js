@@ -1,21 +1,60 @@
-const express = require("express");
+const express = require('express');
+const mongoose = require('mongoose');
+const { Items } = require("../models/rov_models");
 
-const route = express.Router();
 
-exports.CheckItems = (model, id) => {
-  const check = model.find({ _id: id });
+exports.getAllItems = async (req, res) => {
 
-  if (!id) {
-    return res.status(400).json({ message: "Please provide item id" });
+  try {
+    const items = await Items.find({});
+    res.send(items);
+  } catch (error) {
+    res.status(400).send(error.message);
   }
 
-  if (check.length === 0) {
-    return res.status(404).json({ message: "Item not found" });
+};
+
+exports.getItemByName = async (req, res) => {
+  try {
+    const item = await Items.findOne({ name: req.body.name });
+    res.json(item);
+  } catch (error) {
+    res.status(400).send(error.message);
   }
-}
+};
 
-exports.greet = (req, res) =>{
-    console.log("hello");
-    return res.status(200).json({ message: "Success" });
-}
 
+exports.updateItem = async (req, res) => {
+  try {
+
+    /**
+     ** ใน MongoDB พารามิเตอร์ { new: true }
+     ** จะใช้เพื่อระบุว่าจะต้องการให้ฟังก์ชันคืนค่าข้อมูลที่ถูกอัปเดตใหม่ที่สมบูรณ์หลังจากการอัปเดต
+     ** โดยค่าพื้นฐานของ { new: false } คือให้คืนค่าข้อมูลก่อนการอัปเดต (เป็นค่าเริ่มต้น)
+    **/
+
+    const item = await Items.findOneAndUpdate({ name: req.body.name }, req.body, { new: true });
+    res.json(item);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+exports.deleteItem = async (req, res) => {
+  try {
+    await Items.findOneAndDelete({ name: req.body.name });
+    res.json("Delete Item success");
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+exports.addItem = async (req, res ) => {
+  try {
+    const item = new Items(req.body);
+    await item.save();
+    res.json({ success : "Add item success" , message : item });
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
