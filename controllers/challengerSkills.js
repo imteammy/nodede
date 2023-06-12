@@ -1,9 +1,9 @@
 const { ChallengerSkills } = require("../models/rov_models");
 
-exports.getAllSkills = async (req, res) => {
+exports.getAllSkills = async (req, res, next) => {
   try {
     const skills = await ChallengerSkills.find({});
-    if (skills === 0){
+    if (skills.length === 0){
       return res.status(404).send("ChallengerSkills is empty");
     }
     return res.send(skills);

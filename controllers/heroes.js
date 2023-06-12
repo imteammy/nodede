@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 //
 const { Hero } = require("../models/rov_models");
 
-exports.getAllHeroes = async (req, res) => {
+exports.getAllHeroes = async (req, res, next) => {
   try {
     const hero = await Hero.find();
 
@@ -17,7 +17,7 @@ exports.getAllHeroes = async (req, res) => {
   }
 };
 
-exports.getHeroByName = async (req, res) => {
+exports.getHeroByName = async (req, res, next) => {
   const name = req.body.name;
   try {
     const hero = await Hero.find({ name });
@@ -27,7 +27,7 @@ exports.getHeroByName = async (req, res) => {
   }
 };
 
-exports.addHero = async (req, res) => {
+exports.addHero = async (req, res, next) => {
   const HeroData = req.body;
 
   try {
@@ -38,7 +38,7 @@ exports.addHero = async (req, res) => {
   }
 };
 
-exports.updateHeroByName = async (req, res) => {
+exports.updateHeroByName = async (req, res, next) => {
   const { name, updatedData } = req.body;
 
   try {
@@ -58,7 +58,7 @@ exports.updateHeroByName = async (req, res) => {
   }
 };
 
-exports.deleteHeroByName = async (req, res) => {
+exports.deleteHeroByName = async (req, res, next) => {
   const { name } = req.body;
   try {
     const deleteHero = await Hero.findOneAndDelete({ name });
@@ -73,7 +73,7 @@ exports.deleteHeroByName = async (req, res) => {
   }
 };
 
-exports.deleteHeroById = async (req, res) => {
+exports.deleteHeroById = async (req, res, next) => {
   const { id } = req.body;
   try {
     const deleteHero = await Hero.findOneAndDelete({ _id : id });

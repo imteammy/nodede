@@ -7,7 +7,7 @@ const latensSkillController = require('../controllers/latensSkills');
 module.exports = (app) => {
 
   //? Home page
-  app.get("/", (req, res) => {
+  app.get("/", (req, res, next) => {
     res.send("<center><h1>ROV API</h1></center>");
   });
 
