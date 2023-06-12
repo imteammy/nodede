@@ -67,3 +67,17 @@ exports.deleteHeroByName = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+exports.deleteHeroById = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const deleteHero = await Hero.findOneAndDelete({ _id : id });
+    if (!deleteHero) {
+      return res.status(404).json({ message: "Hero not found." });
+    }
+    
+    res.json({ message: "Hero deleted successfully.", data: deleteHero });
+
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

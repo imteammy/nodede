@@ -12,6 +12,7 @@ module.exports = (app) => {
   app.post('/hero/add', heroController.addHero);
   app.post('/hero/update', heroController.updateHeroByName);
   app.delete('/hero/delete', heroController.deleteHeroByName);
+  app.delete('/hero/delete/id', heroController.deleteHeroById);
 
 
   //? Items
