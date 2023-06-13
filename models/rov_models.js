@@ -37,60 +37,24 @@ const heroSchema = new mongoose.Schema({
 });
 
 const roonSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    color: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String,
-        required: true,
-    },
-    effect: {
-        type: String,
-        required: true,
-    },
+    name: String,
+    color: String,
+    image: String,
+    effect: String,
 });
 
 const latensSkillsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String,
-        required: true,
-    },
-    effect: {
-        type: String,
-        required: true,
-    },
-    color: {
-        type: String,
-        required: true,
-    },
+    name: String,
+    image: String,
+    effect: String,
+    color: String,
 });
 
 const ChallengerSkillsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String,
-        required: true,
-    },
-    effect: {
-        type: String,
-        required: true,
-    },
-    cooldown: {
-        type: String,
-        required: true,
-    },
+    name: String,
+    image: String,
+    effect: String,
+    cooldown: String,
 });
 
 const itemSchema = new mongoose.Schema({
