@@ -1,81 +1,87 @@
 const mongoose = require("mongoose");
 
-const heroSchema = new mongoose.Schema({
-    name: String,
-    story: String,
-    image: String,
+/* Start Schema */
+    const heroSchema = new mongoose.Schema({
+    name: { type: String, default: "null" },
+    story: { type: String, default: "null" },
+    image: { type: String, default: "null" },
     role: {
-        main: String,
-        sub: String,
+        main: { type: String, default: "null" },
+        sub: { type: String, default: "null" },
     },
-    skills: {
-        passiveSkill: {
-            name: String,
-            image: String,
-            effect: String,
-            cooldown: String,
-        },
-        firstSkill: {
-            name: String,
-            image: String,
-            effect: String,
-            cooldown: String,
-        },
-        secondSkill: {
-            name: String,
-            image: String,
-            effect: String,
-            cooldown: String,
-        },
-        ultimateSkill: {
-            name: String,
-            image: String,
-            effect: String,
-            cooldown: String,
-        },
+    passiveSkill: {
+        name: { type: String, default: "null" },
+        image: { type: String, default: "null" },
+        effect: { type: String, default: "null" },
+        cooldown: { type: String, default: "null" },
     },
-});
+    firstSkill: {
+        name: { type: String, default: "null" },
+        image: { type: String, default: "null" },
+        effect: { type: String, default: "null" },
+        cooldown: { type: String, default: "null" },
+    },
+    secondSkill: {
+        name: { type: String, default: "null" },
+        image: { type: String, default: "null" },
+        effect: { type: String, default: "null" },
+        cooldown: { type: String, default: "null" },
+    },
+    ultimateSkill: {
+        name: { type: String, default: "null" },
+        image: { type: String, default: "null" },
+        effect: { type: String, default: "null" },
+        cooldown: { type: String, default: "null" },
+    },
+    });
 
-const roonSchema = new mongoose.Schema({
-    name: String,
-    color: String,
-    image: String,
-    effect: String,
-});
+    const roonSchema = new mongoose.Schema({
+    name: { type: String, default: "null" },
+    color: { type: String, default: "null" },
+    image: { type: String, default: "null" },
+    effect: { type: String, default: "null" }
+    });
 
-const latensSkillsSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    effect: String,
-    color: String,
-});
+    const latensSkillsSchema = new mongoose.Schema({
+    name: { type: String, default: "null" },
+    image: { type: String, default: "null" },
+    effect: { type: String, default: "null" },
+    color: { type: String, default: "null" }
+    });
 
-const ChallengerSkillsSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    effect: String,
-    cooldown: String,
-});
+    const ChallengerSkillsSchema = new mongoose.Schema({
+    name: { type: String, default: "null" },
+    image: { type: String, default: "null" },
+    effect: { type: String, default: "null" },
+    cooldown: { type: String, default: "null" }
+    });
 
-const itemSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    effect: String,
-    itemPassive: String,
-    cooldown: String,
-    cost: String
-});
+    const itemSchema = new mongoose.Schema({
+    name: { type: String, default: "null" },
+    image: { type: String, default: "null" },
+    effect: { type: String, default: "null" },
+    itemPassive: { type: String, default: "null" },
+    cooldown: { type: String, default: "null" },
+    cost: { type: String, default: "null" }
+    });
+// End Schema */
 
+/** Start Models */
 const Roons = mongoose.model("Roons", roonSchema);
 const LatensSkills = mongoose.model("LatensSkills", latensSkillsSchema);
-const ChallengerSkills = mongoose.model("ChallengerSkills", ChallengerSkillsSchema);
+const ChallengerSkills = mongoose.model(
+  "ChallengerSkills",
+  ChallengerSkillsSchema
+);
 const Items = mongoose.model("Items", itemSchema);
 const Hero = mongoose.model("Hero", heroSchema);
+//** End Models */
+
 
 module.exports = {
-    Hero,
-    Roons,
-    LatensSkills,
-    ChallengerSkills,
-    Items,
+  Hero,
+  Roons,
+  LatensSkills,
+  ChallengerSkills,
+  Items,
 };
