@@ -1,25 +1,9 @@
 const express = require("express");
-const hero = require('../controllers/heroes');
-const items = require('../controllers/items');
-const challengersSkill = require('../controllers/challengerSkills');
-const roon = require('../controllers/roons');
-const latensSkill = require('../controllers/latensSkills');
 
-auth = async (req, res, next) => {
-  
-  const { token } = req.body;
+const { hero, items, challengersSkill, roon, latensSkill } = require('../controllers/index');
 
-  if (!token || token === "" || token === undefined) {
-    return res.json({error : "Token is required"});
-  }
+const auth = require('../middleware/middleware');
 
-  if (token === "12345") {
-    return next();
-  } else {
-    return res.json({error : "Invalid token!"});
-  }
-
-};
 module.exports = (app) => {
 
   //TODO Home page
@@ -29,7 +13,7 @@ module.exports = (app) => {
 
   //TODO Heroes
   app.get('/hero/', hero.getAllHeroes);
-  app.post('/hero/name', hero.getHeroByName);
+  app.post('/hero/name',auth, hero.getHeroByName);
   app.post('/hero/add', auth, hero.addHero);
   app.post('/hero/update', auth, hero.updateHeroByName);
   app.delete('/hero/delete', auth, hero.deleteHeroByName);
@@ -37,7 +21,7 @@ module.exports = (app) => {
 
   //TODO Items
   app.get('/items', items.getAllItems);
-  app.post('/items/name', items.getItemByName);
+  app.post('/items/name', auth, items.getItemByName);
   app.post('/items/add', auth, items.addItem);
   app.post('/items/update', auth, items.updateItem);
   app.delete('/items/delete', auth, items.deleteItem);
@@ -64,3 +48,6 @@ module.exports = (app) => {
   app.delete('/latensskill/delete', auth, latensSkill.deleteLatensSkill);
 
 };
+
+
+
