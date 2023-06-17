@@ -39,10 +39,10 @@ exports.addHero = async (req, res, next) => {
 };
 
 exports.updateHeroByName = async (req, res, next) => {
-
     try {
+        const { findName } = req.body;
         const data = JSON.parse(req.body);
-        const filter = { name : findName };
+        const filter = { name: findName };
         const update = Object.assign({}, data);
         const UpdateResult = await Hero.findOneAndUpdate(
             filter,
@@ -59,6 +59,7 @@ exports.updateHeroByName = async (req, res, next) => {
         return res.status(400).json({ message: error.message });
     }
 };
+
 
 exports.deleteHeroByName = async (req, res, next) => {
     const { name } = req.body;
