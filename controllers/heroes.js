@@ -44,7 +44,7 @@ exports.updateHeroByName = async (req, res, next) => {
         delete data.token;
         delete data.findName;
 
-        const filter = { id: data.id };
+        const filter = { _id: data.id };
         const update = Object.assign({}, data);
         const updateResult = await Hero.findOneAndUpdate(filter, update, {
         new: true
