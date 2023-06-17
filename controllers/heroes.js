@@ -40,9 +40,8 @@ exports.addHero = async (req, res, next) => {
 
 exports.updateHeroByName = async (req, res, next) => {
     try {
-        const data = JSON.parse(req.body);
+        const data = req.body;
         delete data.token;
-        delete data.findName;
 
         const filter = { _id: data.id };
         const update = Object.assign({}, data);
@@ -50,13 +49,13 @@ exports.updateHeroByName = async (req, res, next) => {
         new: true
         });
 
-        if (!UpdateResult) {
+        if (!updateResult) {
             return res.status(404).json({ message: 'Hero not found.' });
         };
 
         return res.json({
             message: 'Hero updated successfully.',
-            data: UpdateResult
+            data: updateResult
         });
     } catch (error) {
         return res.status(400).json({ message: error.message })

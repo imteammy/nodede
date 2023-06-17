@@ -23,12 +23,18 @@ exports.getLatensSkillByName = async (req, res) => {
 
 exports.updateLatensSkill = async (req, res) => {
   try {
-    const skill = await LatensSkills.findOneAndUpdate(
-      { name: req.body.name },
-      req.body,
-      { new: true }
+    const data = req.body;
+    delete data.token;
+    const filter = { _id : data.id };
+    const update = { $set: data };
+    const updateRusult = await LatensSkills.findOneAndUpdate(filter, update, { new: true }
     );
-    return res.json(skill);
+
+    if(!updateRusult){
+      return res.status(400).send("Update LatensSkill fail");
+    }
+    return res.json({ success: "Update LatensSkill success", message: updateRusult });
+
   } catch (error) {
     return res.status(400).send(error.message);
   }
