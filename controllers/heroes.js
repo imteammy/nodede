@@ -40,18 +40,15 @@ exports.addHero = async (req, res, next) => {
 
 exports.updateHeroByName = async (req, res, next) => {
     try {
-        const newData = JSON.parse(req.body);
-        delete newData.token;
+        const data = JSON.parse(req.body);
+        delete data.token;
+        delete data.findName;
 
-        const data = JSON.stringify(newData);
-        const { findName, ...update } = req.body; // Remove findName property from req.body
-
-        const filter = { name: findName };
-
+        const filter = { id: data.id };
+        const update = Object.assign({}, data);
         const updateResult = await Hero.findOneAndUpdate(filter, update, {
         new: true
         });
-
 
         if (!UpdateResult) {
             return res.status(404).json({ message: 'Hero not found.' });
