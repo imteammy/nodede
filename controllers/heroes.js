@@ -39,44 +39,11 @@ exports.addHero = async (req, res, next) => {
 };
 
 exports.updateHeroByName = async (req, res, next) => {
-    const { name } = req.body;
 
     try {
-        const filter = { name };
-        const update = {
-            HeroName,
-            HeroImage,
-            HeroStory,
-            HeroRole: {
-                main : roleMain,
-                sub : roleSub
-            },
-            passiveSkill: {
-                passiveSkillName,
-                passiveSkillImage,
-                passiveSkillEffect,
-                passiveSkillCoolDown
-            },
-            firstSkill: {
-                firstSkillName,
-                firstSkillImage,
-                firstSkillEffect,
-                firstSkillCoolDown
-            },
-            secondSkill: {
-                secondSkillName,
-                secondSkillImage,
-                secondSkillEffect,
-                secondSkillCoolDown
-            },
-            ultimateSkill: {
-                ultimateSkillName,
-                ultimateSkillImage,
-                ultimateSkillEffect,
-                ultimateSkillCoolDown
-            }
-
-        };
+        const data = JSON.parse(req.body);
+        const filter = { name : findName };
+        const update = Object.assign({}, data);
         const UpdateResult = await Hero.findOneAndUpdate(
             filter,
             update,
