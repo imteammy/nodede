@@ -1,6 +1,4 @@
-const express = require('express')
-const mongoose = require('mongoose')
-//
+
 const { Hero } = require('../models/rov_models')
 
 exports.getAllHeroes = async (req, res, next) => {
@@ -20,18 +18,21 @@ exports.getAllHeroes = async (req, res, next) => {
 exports.getHeroByName = async (req, res, next) => {
     const name = req.body.name
     try {
-        const hero = await Hero.find({ name })
-        return res.send(hero)
+        const hero = await Hero.find({ name });
+        if(!hero) {
+            return ({message : "Hero not foound!"});
+        }
+        return res.send(hero);
     } catch (error) {
-        return res.send(error.message)
+        return res.send(error.message);
     }
 }
 
 exports.addHero = async (req, res, next) => {
     const HeroData = req.body
-
+    delete HeroData.token;
     try {
-        const result = await Hero.create(HeroData)
+        const result = await Hero.create(...HeroData)
         return res.json({ message: 'Created new hero successfully.', data: result })
     } catch (error) {
         return res.status(400).json({ message: error.message })

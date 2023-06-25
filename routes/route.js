@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { hero, items, challengersSkill, roon, latensSkill } = require('../controllers/index');
+const { hero, items, challengersSkill, roon, latensSkill, tierlist } = require('../controllers/index');
 
 const auth = require('../middleware/middleware');
 
@@ -11,6 +11,8 @@ module.exports = (app) => {
     res.send("<center><h1>ROV API .</h1></center>");
   });
 
+  app.get('/tierlist', tierlist.getAll);
+  app.post('/tierlist/add', tierlist.addTierlist);
   //TODO Heroes
   app.get('/hero/', hero.getAllHeroes);
   app.post('/hero/name',auth, hero.getHeroByName);
